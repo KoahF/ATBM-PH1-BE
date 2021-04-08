@@ -22,8 +22,8 @@ module.exports = async function (q) {
 async function query (q) {
 	try {
 		let connection = await oracledb.getConnection();
-
 		let result = await connection.execute(q);
+		console.log('huy');
 
 		await connection.close();
 
