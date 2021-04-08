@@ -1,0 +1,14 @@
+CL SCR;
+CREATE OR REPLACE PROCEDURE getUsers
+(
+   CURSOR_ OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+   OPEN CURSOR_ FOR
+      SELECT USER_ID, USERNAME FROM ALL_USERS;
+END;
+SET SERVEROUTPUT ON;
+variable myv refcursor;
+execute getUsers (:myv);
+print myv;

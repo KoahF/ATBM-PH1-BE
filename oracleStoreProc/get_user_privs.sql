@@ -1,0 +1,24 @@
+--Thong tin ve quyen cua USER
+CL SCR;
+CREATE OR REPLACE PROCEDURE get_User_Privileges
+(
+   CURSOR_ OUT SYS_REFCURSOR, 
+   pi_user_Name IN NVARCHAR2
+)
+AS
+BEGIN
+   OPEN CURSOR_ FOR
+      SELECT GRANTEE, TABLE_NAME, PRIVILEGE
+      FROM ALL_TAB_PRIVS
+      WHERE GRANTEE = pi_user_Name;
+END;
+
+CL SCR;
+variable myv refcursor;
+variable userName NVARCHAR2
+execute get_User_Privileges(:myv,'NHANVIENKHAMBENH');
+print myv;
+
+GRANT CONNECT to NHANVIENKHAMBENH
+GRANT INSERT ON CTHoaDon TO NHANVIENKHAMBENH
+SELECT * FROM CTHoaDON
